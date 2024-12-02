@@ -5,6 +5,7 @@ import * as Joi from 'joi';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -33,9 +34,11 @@ import { AppService } from './app.service';
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
         synchronize: configService.get<string>('NODE_ENV') !== 'production',
+        autoLoadEntities: true,
       }),
       inject: [ConfigService],
-    })
+    }),
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],
