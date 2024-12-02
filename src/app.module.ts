@@ -1,9 +1,42 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import * as Joi from 'joi';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 @Module({
-  imports: [],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validationSchema: Joi.object({
+        NODE_ENV: Joi.string()
+          .valid('development', 'production', 'test')
+          .default('development'),
+        PORT: Joi.number().default(3000),
+        DB_TYPE: Joi.string().valid('mysql', 'postgres', 'sqlite').required(),
+        DB_HOST: Joi.string().required(),
+        DB_PORT: Joi.number().default(3306),
+        DB_USERNAME: Joi.string().required(),
+        DB_PASSWORD: Joi.string().required(),
+        DB_DATABASE: Joi.string().required(),
+      }),
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        type: configService.get<'mysql' | 'postgres' | 'sqlite'>('DB_TYPE'),
+        host: configService.get<string>('DB_HOST'),
+        port: +configService.get<number>('DB_PORT'),
+        username: configService.get<string>('DB_USERNAME'),
+        password: configService.get<string>('DB_PASSWORD'),
+        database: configService.get<string>('DB_DATABASE'),
+        synchronize: configService.get<string>('NODE_ENV') !== 'production',
+      }),
+      inject: [ConfigService],
+    })
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
