@@ -1,11 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { APP_GUARD } from '@nestjs/core';
 import * as Joi from 'joi';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { JwtAuthGuard } from './auth/guard/';
 
 @Module({
   imports: [
@@ -38,9 +42,16 @@ import { UsersModule } from './users/users.module';
       }),
       inject: [ConfigService],
     }),
-    UsersModule
+    UsersModule,
+    AuthModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
 })
 export class AppModule {}

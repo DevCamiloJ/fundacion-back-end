@@ -2,6 +2,8 @@ import { ConflictException, Injectable, NotFoundException } from '@nestjs/common
 import { InjectRepository } from '@nestjs/typeorm';
 import { IsNull, Not, Repository } from 'typeorm';
 
+import * as bcrypt from 'bcrypt';
+
 import { User } from './entities/user.entity';
 import { CreateUserDto, UpdateUserDto } from './dto';
 
@@ -23,7 +25,7 @@ export class UsersService {
 
   // Crea un nuevo usuario después de verificar que el email y el nombre de usuario no estén en uso
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const { email, username } = createUserDto;
+    const { email, username, password } = createUserDto;
     
     // Verificar que el correo electrónico no esté en uso
     const emailTaken = await this.isEmailTaken(email);
@@ -35,7 +37,8 @@ export class UsersService {
     if (usernameTaken) throw new ConflictException('El nombre de usuario ya está en uso');
     
     // Crear y guardar el usuario en la base de datos
-    const user = this.usersRepository.create(createUserDto);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = this.usersRepository.create({ ...createUserDto, password: hashedPassword });
     return this.usersRepository.save(user);
   }
 
