@@ -10,6 +10,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guard/';
+import { MembersModule } from './members/members.module';
 
 @Module({
   imports: [
@@ -43,7 +44,8 @@ import { JwtAuthGuard } from './auth/guard/';
       inject: [ConfigService],
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    MembersModule,
   ],
   controllers: [AppController],
   providers: [
