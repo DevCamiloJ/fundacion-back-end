@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guard/';
 import { MembersModule } from './members/members.module';
+import { CountriesModule } from './countries/countries.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { MembersModule } from './members/members.module';
     UsersModule,
     AuthModule,
     MembersModule,
+    CountriesModule,
   ],
   controllers: [AppController],
   providers: [
