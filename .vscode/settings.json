@@ -3,6 +3,7 @@
         "users",
         "auth",
         "members",
-        "countries"
+        "countries",
+        "department"
     ]
 }

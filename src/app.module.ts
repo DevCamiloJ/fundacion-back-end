@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guard/';
 import { MembersModule } from './members/members.module';
 import { CountriesModule } from './countries/countries.module';
+import { DepartmentsModule } from './departments/departments.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { CountriesModule } from './countries/countries.module';
     AuthModule,
     MembersModule,
     CountriesModule,
+    DepartmentsModule,
   ],
   controllers: [AppController],
   providers: [
