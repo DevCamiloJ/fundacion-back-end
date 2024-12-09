@@ -35,7 +35,7 @@ export class EducationalInstitutionsController {
     return this.educationalInstitutionsService.remove(id);
   }
 
-  @Post(':id/restaurar')
+  @Post(':id/restore')
   restore(@Param('id', ParseUUIDPipe) id: string) {
     return this.educationalInstitutionsService.restore(id);
   }
