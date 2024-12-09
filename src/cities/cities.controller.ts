@@ -3,7 +3,7 @@ import { Controller, Get, Post, Patch, Delete, Param, Body, ParseUUIDPipe } from
 import { CitiesService } from './cities.service';
 import { CreateCityDto, UpdateCityDto } from './dto';
 
-@Controller('ciudades')
+@Controller('cities')
 export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
 
@@ -37,7 +37,7 @@ export class CitiesController {
     return this.citiesService.remove(id);
   }
 
-  @Post(':id/restaurar')
+  @Post(':id/restore')
   restore(@Param('id', ParseUUIDPipe) id: string) {
     return this.citiesService.restore(id);
   }
