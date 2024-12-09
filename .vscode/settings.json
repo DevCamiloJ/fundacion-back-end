@@ -9,6 +9,8 @@
         "education-institutions",
         "eps",
         "interes-topic",
-        "sisben-score"
+        "sisben-score",
+        "population-group",
+        "population-type"
     ]
 }
