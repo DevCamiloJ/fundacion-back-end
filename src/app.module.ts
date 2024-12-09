@@ -16,6 +16,7 @@ import { DepartmentsModule } from './departments/departments.module';
 import { CitiesModule } from './cities/cities.module';
 import { EducationalInstitutionsModule } from './educational-institutions/educational-institutions.module';
 import { EpsModule } from './eps/eps.module';
+import { InterestTopicModule } from './interest-topic/interest-topic.module';
 
 @Module({
   imports: [
@@ -56,6 +57,7 @@ import { EpsModule } from './eps/eps.module';
     CitiesModule,
     EducationalInstitutionsModule,
     EpsModule,
+    InterestTopicModule,
   ],
   controllers: [AppController],
   providers: [

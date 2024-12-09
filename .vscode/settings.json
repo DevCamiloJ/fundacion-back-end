@@ -6,6 +6,7 @@
         "countries",
         "department",
         "cities",
-        "education-institutions"
+        "education-institutions",
+        "eps"
     ]
 }
