@@ -17,6 +17,7 @@ import { CitiesModule } from './cities/cities.module';
 import { EducationalInstitutionsModule } from './educational-institutions/educational-institutions.module';
 import { EpsModule } from './eps/eps.module';
 import { InterestTopicModule } from './interest-topic/interest-topic.module';
+import { SisbenScoreModule } from './sisben-score/sisben-score.module';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { InterestTopicModule } from './interest-topic/interest-topic.module';
     EducationalInstitutionsModule,
     EpsModule,
     InterestTopicModule,
+    SisbenScoreModule,
   ],
   controllers: [AppController],
   providers: [

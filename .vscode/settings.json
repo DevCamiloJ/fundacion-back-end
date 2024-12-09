@@ -7,6 +7,8 @@
         "department",
         "cities",
         "education-institutions",
-        "eps"
+        "eps",
+        "interes-topic",
+        "sisben-score"
     ]
 }
