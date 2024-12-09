@@ -13,6 +13,7 @@ import { JwtAuthGuard } from './auth/guard/';
 import { MembersModule } from './members/members.module';
 import { CountriesModule } from './countries/countries.module';
 import { DepartmentsModule } from './departments/departments.module';
+import { CitiesModule } from './cities/cities.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { DepartmentsModule } from './departments/departments.module';
     MembersModule,
     CountriesModule,
     DepartmentsModule,
+    CitiesModule,
   ],
   controllers: [AppController],
   providers: [

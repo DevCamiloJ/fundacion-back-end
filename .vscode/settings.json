@@ -4,6 +4,7 @@
         "auth",
         "members",
         "countries",
-        "department"
+        "department",
+        "cities"
     ]
 }

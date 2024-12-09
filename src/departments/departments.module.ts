@@ -13,5 +13,6 @@ import { CountriesModule } from 'src/countries/countries.module';
   ],
   controllers: [DepartmentController],
   providers: [DepartmentService],
+  exports: [DepartmentService]
 })
 export class DepartmentsModule {}

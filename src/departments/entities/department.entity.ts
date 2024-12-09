@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Country } from 'src/countries/entities/country.entity';
+import { City } from 'src/cities/entities/city.entity';
 
 @Entity('departamento')
 export class Department {
@@ -11,6 +12,9 @@ export class Department {
 
   @ManyToOne(() => Country, (pais) => pais.departamentos, { nullable: false, onDelete: 'CASCADE' })
   pais: Country;
+
+  @OneToMany(() => City, (ciudad) => ciudad.departamento)
+  ciudades: City[];
 
   @CreateDateColumn()
   createdAt: Date;
