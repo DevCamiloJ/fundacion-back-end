@@ -14,6 +14,7 @@ import { MembersModule } from './members/members.module';
 import { CountriesModule } from './countries/countries.module';
 import { DepartmentsModule } from './departments/departments.module';
 import { CitiesModule } from './cities/cities.module';
+import { EducationalInstitutionsModule } from './educational-institutions/educational-institutions.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { CitiesModule } from './cities/cities.module';
     CountriesModule,
     DepartmentsModule,
     CitiesModule,
+    EducationalInstitutionsModule,
   ],
   controllers: [AppController],
   providers: [

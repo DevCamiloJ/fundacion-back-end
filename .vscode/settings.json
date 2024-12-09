@@ -5,6 +5,7 @@
         "members",
         "countries",
         "department",
-        "cities"
+        "cities",
+        "education-institutions"
     ]
 }
