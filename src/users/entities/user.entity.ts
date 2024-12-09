@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';
 
-@Entity()
+@Entity('usuario')
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
