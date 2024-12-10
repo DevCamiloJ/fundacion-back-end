@@ -21,6 +21,7 @@ import { SisbenScoreModule } from './sisben-score/sisben-score.module';
 import { PopulationGroupModule } from './population-group/population-group.module';
 import { PopulationTypeModule } from './population-type/population-type.module';
 import { EthnicGroupModule } from './ethnic-group/ethnic-group.module';
+import { DisabilityModule } from './disability/disability.module';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { EthnicGroupModule } from './ethnic-group/ethnic-group.module';
     PopulationGroupModule,
     PopulationTypeModule,
     EthnicGroupModule,
+    DisabilityModule,
   ],
   controllers: [AppController],
   providers: [
