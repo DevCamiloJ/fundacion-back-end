@@ -20,6 +20,7 @@ import { InterestTopicModule } from './interest-topic/interest-topic.module';
 import { SisbenScoreModule } from './sisben-score/sisben-score.module';
 import { PopulationGroupModule } from './population-group/population-group.module';
 import { PopulationTypeModule } from './population-type/population-type.module';
+import { EthnicGroupModule } from './ethnic-group/ethnic-group.module';
 
 @Module({
   imports: [
@@ -64,6 +65,7 @@ import { PopulationTypeModule } from './population-type/population-type.module';
     SisbenScoreModule,
     PopulationGroupModule,
     PopulationTypeModule,
+    EthnicGroupModule,
   ],
   controllers: [AppController],
   providers: [
