@@ -12,6 +12,8 @@
         "sisben-score",
         "population-group",
         "population-type",
-        "ethnic-group"
+        "ethnic-group",
+        "disability",
+        "guardian"
     ]
 }

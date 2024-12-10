@@ -22,6 +22,7 @@ import { PopulationGroupModule } from './population-group/population-group.modul
 import { PopulationTypeModule } from './population-type/population-type.module';
 import { EthnicGroupModule } from './ethnic-group/ethnic-group.module';
 import { DisabilityModule } from './disability/disability.module';
+import { GuardianModule } from './guardian/guardian.module';
 
 @Module({
   imports: [
@@ -68,6 +69,7 @@ import { DisabilityModule } from './disability/disability.module';
     PopulationTypeModule,
     EthnicGroupModule,
     DisabilityModule,
+    GuardianModule,
   ],
   controllers: [AppController],
   providers: [
