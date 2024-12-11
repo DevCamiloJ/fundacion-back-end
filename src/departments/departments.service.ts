@@ -50,7 +50,7 @@ export class DepartmentService {
 
   async findByCountry(paisId: string): Promise<Department[]> {
     const country = await this.countryService.findOne(paisId);
-    return this.departmentRepository.find({ where: { pais: country }, relations: ['pais'] });
+    return this.departmentRepository.find({ where: { pais: { id: country.id} }, relations: ['pais'] });
   }
 
   async update(id: string, updateDepartmentDto: UpdateDepartmentDto): Promise<Department> {
