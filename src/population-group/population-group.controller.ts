@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
+
 import { PopulationGroupService } from './population-group.service';
-import { CreatePopulationGroupDto } from './dto/create-population-group.dto';
-import { UpdatePopulationGroupDto } from './dto/update-population-group.dto';
+import { CreatePopulationGroupDto, UpdatePopulationGroupDto } from './dto';
 
 @Controller('population-group')
 export class PopulationGroupController {
