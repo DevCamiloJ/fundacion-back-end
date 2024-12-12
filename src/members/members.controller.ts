@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, ParseUUIDPipe, UseInterceptors  } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, ParseUUIDPipe, UseInterceptors, UploadedFile  } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { v4 as uuidv4 } from 'uuid';
@@ -24,8 +24,8 @@ export class MembersController {
       }),
     }),
   )
-  create(@Body() createMemberDto: CreateMemberDto) {
-    return this.membersService.create(createMemberDto);
+  create(@Body() createMemberDto: CreateMemberDto, @UploadedFile() imagen: Express.Multer.File) {
+    return this.membersService.create({...createMemberDto, imagenUrl: imagen ? imagen.path: null });
   }
 
   @Get()

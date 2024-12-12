@@ -1,4 +1,4 @@
-import { IsArray, IsDateString, IsNumber, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsArray,IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreateMemberDto {
   @IsString()
@@ -13,7 +13,7 @@ export class CreateMemberDto {
   @IsString()
   numeroDocumento: string;
 
-  @IsDateString()
+  @IsString()
   fechaNacimiento: string;
 
   @IsUUID()
@@ -25,7 +25,7 @@ export class CreateMemberDto {
   @IsUUID()
   ciudadNacimiento: string;
 
-  @IsNumber()
+  @IsString()
   peso: number;
 
   @IsString()
@@ -39,7 +39,7 @@ export class CreateMemberDto {
   @IsString()
   grado: string;
 
-  @IsDateString()
+  @IsString()
   fechaIngresoFundacion: string;
 
   @IsUUID()
@@ -66,7 +66,7 @@ export class CreateMemberDto {
 
   @IsOptional()
   @IsString()
-  numeroCasoAcompañamientoPsicologico: string;
+  numeroCasoPsicologico: string;
 
   @IsArray()
   @IsUUID("4", { each: true })
@@ -79,4 +79,8 @@ export class CreateMemberDto {
   @IsOptional()
   @IsString()
   discapacidadMedica: string;
+
+  @IsOptional()
+  @IsString()
+  imagenUrl: string;
 }

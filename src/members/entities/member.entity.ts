@@ -1,3 +1,5 @@
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+
 import { City } from 'src/cities/entities/city.entity';
 import { Country } from 'src/countries/entities/country.entity';
 import { Department } from 'src/departments/entities/department.entity';
@@ -8,7 +10,6 @@ import { EthnicGroup } from 'src/ethnic-group/entities/ethnic-group.entity';
 import { InterestTopic } from 'src/interest-topic/entities/interest-topic.entity';
 import { PopulationGroup } from 'src/population-group/entities/population-group.entity';
 import { SisbenScore } from 'src/sisben-score/entities/sisben-score.entity';
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('miembro')
 export class Member {
@@ -57,16 +58,16 @@ export class Member {
   @Column({ type: 'date' })
   fechaIngresoFundacion: Date;
 
-  @ManyToOne(() => Eps, { eager: true })
+  @ManyToOne(() => Eps, { nullable: true, eager: true })
   eps: string;
 
   @ManyToOne(() => SisbenScore, { eager: true })
   puntajeSisben: string;
 
-  @ManyToOne(() => PopulationGroup, { eager: true })
+  @ManyToOne(() => PopulationGroup, { nullable: true, eager: true })
   grupoPoblacional: string;
 
-  @ManyToOne(() => EthnicGroup, { eager: true })
+  @ManyToOne(() => EthnicGroup, { nullable: true, eager: true })
   grupoEtnico: string;
 
   @Column({ type: 'varchar', nullable: true })
@@ -76,7 +77,7 @@ export class Member {
   numeroCasoViolenciaFamiliar: string;
 
   @Column({ type: 'varchar', nullable: true })
-  numeroCasoAcompañamientoPsicologico: string;
+  numeroCasoPsicologico: string;
 
   @ManyToMany(() => InterestTopic)
   @JoinTable()
