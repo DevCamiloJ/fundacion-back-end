@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 
 import { InterestTopic } from './entities/interest-topic.entity';
 import { CreateInterestTopicDto, UpdateInterestTopicDto } from './dto';
@@ -39,6 +39,10 @@ export class InterestTopicService {
     const interestTopic = await this.interesTopicRepository.findOne({ where: { id } });
     if (!interestTopic) throw new NotFoundException(`No se encontró un tema de interés con el ID ${id}`);
     return interestTopic;
+  }
+
+  async findByIds(ids: string[]): Promise<InterestTopic[]> {
+    return this.interesTopicRepository.findBy({ id: In(ids) });
   }
 
   async update(id: string, updateInterestTopicDto: UpdateInterestTopicDto): Promise<InterestTopic> {

@@ -1,4 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, ParseUUIDPipe  } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, ParseUUIDPipe, UseInterceptors  } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { v4 as uuidv4 } from 'uuid';
+import { extname } from 'path';
 
 import { MembersService } from './members.service';
 import { Member } from './entities/member.entity';
@@ -9,7 +13,18 @@ export class MembersController {
   constructor(private readonly membersService: MembersService) {}
 
   @Post()
-  create(@Body() createMemberDto: CreateMemberDto): Promise<Member> {
+  @UseInterceptors(
+    FileInterceptor('imagen', {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, cb) => {
+          const uniqueName = `${uuidv4()}${extname(file.originalname)}`;
+          cb(null, uniqueName);
+        },
+      }),
+    }),
+  )
+  create(@Body() createMemberDto: CreateMemberDto) {
     return this.membersService.create(createMemberDto);
   }
 

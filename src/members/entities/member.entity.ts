@@ -1,60 +1,93 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { City } from 'src/cities/entities/city.entity';
+import { Country } from 'src/countries/entities/country.entity';
+import { Department } from 'src/departments/entities/department.entity';
+import { Disability } from 'src/disability/entities/disability.entity';
+import { EducationalInstitution } from 'src/educational-institutions/entities/educational-institution.entity';
+import { Eps } from 'src/eps/entities/eps.entity';
+import { EthnicGroup } from 'src/ethnic-group/entities/ethnic-group.entity';
+import { InterestTopic } from 'src/interest-topic/entities/interest-topic.entity';
+import { PopulationGroup } from 'src/population-group/entities/population-group.entity';
+import { SisbenScore } from 'src/sisben-score/entities/sisben-score.entity';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('miembro')
 export class Member {
   @PrimaryGeneratedColumn('uuid')
   id: string;
   
-  @Column()
+  @Column({ type: 'varchar', length: 255 })
   nombres: string;
-  
-  @Column()
+
+  @Column({ type: 'varchar', length: 255 })
   apellidos: string;
-  
-  @Column()
+
+  @Column({ type: 'varchar', length: 50 })
   tipoDocumento: string;
-  
-  @Column()
+
+  @Column({ type: 'varchar', length: 50, unique: true })
   numeroDocumento: string;
-  
+
   @Column({ type: 'date' })
   fechaNacimiento: Date;
-  
-  @Column()
-  edad: number;
-  
-  @Column()
-  ciudadNacimiento: string;
-  
-  @Column()
+
+  @Column({ type: 'varchar', nullable: true })
+  imagenPath: string;
+
+  @ManyToOne(() => Country, { eager: true })
   paisNacimiento: string;
-  
-  @Column({ default: true })
-  estudia: boolean;
-  
-  @Column({ nullable: true })
-  grado: string;
-  
-  @Column({ nullable: true })
+
+  @ManyToOne(() => Department, { eager: true })
+  departamentoNacimiento: string;
+
+  @ManyToOne(() => City, { eager: true })
+  ciudadNacimiento: string;
+
+  @Column({ type: 'float' })
+  peso: number;
+
+  @Column({ type: 'varchar', length: 10 })
+  talla: string;
+
+  @ManyToOne(() => EducationalInstitution, { nullable: true, eager: true })
   institucionEducativa: string;
-  
-  @Column({ nullable: true })
+
+  @Column({ type: 'varchar', nullable: true })
+  grado: string;
+
+  @Column({ type: 'date' })
+  fechaIngresoFundacion: Date;
+
+  @ManyToOne(() => Eps, { eager: true })
   eps: string;
-  
-  @Column({ default: false })
-  tieneSisbem: boolean;
-  
-  @Column({ nullable: true })
+
+  @ManyToOne(() => SisbenScore, { eager: true })
+  puntajeSisben: string;
+
+  @ManyToOne(() => PopulationGroup, { eager: true })
   grupoPoblacional: string;
-  
-  @Column({ nullable: true })
+
+  @ManyToOne(() => EthnicGroup, { eager: true })
   grupoEtnico: string;
-  
-  @Column({ default: false })
-  discapacidad: boolean;
-  
-  @Column({ nullable: true })
-  condicionMedica: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  numeroCasoVGB: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  numeroCasoViolenciaFamiliar: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  numeroCasoAcompañamientoPsicologico: string;
+
+  @ManyToMany(() => InterestTopic)
+  @JoinTable()
+  areasInteres: InterestTopic[];
+
+  @ManyToMany(() => Disability)
+  @JoinTable()
+  discapacidades: Disability[];
+
+  @Column({ type: 'varchar', nullable: true })
+  discapacidadMedica: string;
   
   @Column({ default: true })
   estado: boolean;

@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 
 import { CreateDisabilityDto, UpdateDisabilityDto } from './dto';
 import { Disability } from './entities/disability.entity';
@@ -40,6 +40,10 @@ export class DisabilityService {
     const disability = await this.disabilityRepository.findOne({ where: { id } });
     if (!disability) throw new NotFoundException(`No se encontró una discapacidad con el ID ${id}`);
     return disability;
+  }
+
+  async findByIds(ids: string[]) {
+    return this.disabilityRepository.findBy({ id: In(ids) });
   }
 
   async update(id: string, updateDisabilityDto: UpdateDisabilityDto) {
