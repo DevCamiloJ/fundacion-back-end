@@ -32,7 +32,7 @@ export class Member {
   fechaNacimiento: Date;
 
   @Column({ type: 'varchar', nullable: true })
-  imagenPath: string;
+  imagenUrl: string;
 
   @ManyToOne(() => Country, { eager: true })
   paisNacimiento: string;
